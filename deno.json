@@ -1,0 +1,5 @@
+{
+  "task": {
+    "test": "deno test --allow-net"
+  }
+}
