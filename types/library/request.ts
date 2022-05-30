@@ -1,4 +1,4 @@
-import { Location, Prefecture } from "../mod.ts";
+import { Location } from "../mod.ts";
 
 export interface LibraryRequestOptions {
   /**
