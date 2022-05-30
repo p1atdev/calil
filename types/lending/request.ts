@@ -1,8 +1,10 @@
+import { Library } from "../../models/mod.ts";
+
 export interface LendingRequestOptions {
   /**
    * アプリケーションキー
    */
-  appKey: string;
+  appKey?: string;
 
   /**
    * ISBN
@@ -12,7 +14,7 @@ export interface LendingRequestOptions {
   /**
    * システムID
    */
-  systemId: string | string[];
+  systemId: string | string[] | Library | Library[];
 }
 
 export const LendingRequestOptionsParameter: Map<string, string> = new Map([

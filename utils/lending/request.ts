@@ -3,7 +3,7 @@ import {
   LendingRequestOptionsParameter,
   LendingResponse,
 } from "../../types/mod.ts";
-import { Lending } from "../../models/mod.ts";
+import { Lending, Library } from "../../models/mod.ts";
 
 const endpoint = "https://api.calil.jp/check";
 
@@ -25,9 +25,22 @@ const createRequestURL = (options: LendingRequestOptions): URL => {
       switch (key) {
         case "systemId": {
           if (Array.isArray(value)) {
-            url.searchParams.append(parameter, value.join(","));
+            if (value.every((v) => v instanceof Library)) {
+              url.searchParams.append(
+                parameter,
+                value.map((lib) => {
+                  return (lib as Library).systemId;
+                }).join(","),
+              );
+            } else {
+              url.searchParams.append(parameter, value.join(","));
+            }
           } else {
-            url.searchParams.append(parameter, value as string);
+            if (value instanceof Library) {
+              url.searchParams.append(parameter, (value as Library).systemId);
+            } else {
+              url.searchParams.append(parameter, value as string);
+            }
           }
           break;
         }

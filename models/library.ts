@@ -5,36 +5,36 @@ export class Library {
    * 図書館ID
    * 例: "100002"
    */
-  libid: string;
+  libraryId: string;
 
   /**
    * 図書館の正式名称
    * 例: "阿久比町立図書館"
    */
-  formal: string;
+  formalName: string;
 
   /**
    * 図書館の略称
    */
-  short: string;
+  shortName: string;
 
   /**
    * システムID
    * 例: "Aichi_Agui"
    */
-  systemid: string;
+  systemId: string;
 
   /**
    * システム名称
    * 例: "愛知県阿久比町"
    */
-  systemname: string;
+  systemName: string;
 
   /**
    * システム毎の図書館キー
    * 例: "阿久比町立図書館"
    */
-  libkey: string;
+  libraryKey: string;
 
   /**
    * 図書館のカテゴリー
@@ -45,7 +45,7 @@ export class Library {
    * 郵便番号
    * 例: "470-2212"
    */
-  post: string;
+  postalCode: string;
 
   /**
    * 電話番号
@@ -56,7 +56,7 @@ export class Library {
   /**
    * 都道府県
    */
-  pref: string;
+  prefecture: string;
 
   /**
    * 市区町村
@@ -71,7 +71,7 @@ export class Library {
   /**
    * 位置情報、緯度経度
    */
-  geocode: Location;
+  location: Location;
 
   /**
    * ISIL国際標準識別子
@@ -84,24 +84,24 @@ export class Library {
   /**
    * PC用URL
    */
-  url_pc: string;
+  url: string;
 
   constructor(data: LibraryResponse) {
-    this.libid = data.libid;
-    this.formal = data.formal;
-    this.short = data.short;
-    this.systemid = data.systemid;
-    this.systemname = data.systemname;
-    this.libkey = data.libkey;
+    this.libraryId = data.libid;
+    this.formalName = data.formal;
+    this.shortName = data.short;
+    this.systemId = data.systemid;
+    this.systemName = data.systemname;
+    this.libraryKey = data.libkey;
     this.category = data.category;
-    this.post = data.post;
+    this.postalCode = data.post;
     this.tel = data.tel;
-    this.pref = data.pref;
+    this.prefecture = data.pref;
     this.city = data.city;
     this.address = data.address;
-    this.geocode = Location.fromString(data.geocode);
+    this.location = Location.fromString(data.geocode);
     this.isil = data.isil;
     this.faid = data.faid;
-    this.url_pc = data.url_pc;
+    this.url = data.url_pc;
   }
 }

@@ -73,7 +73,7 @@ export const createLibraryRequest = async (
 
   const res: LibraryResponse[] = json;
 
-  // TODO: ここでもうちょいデータを整形してから返す
+  // ここでデータを整形してから返す
   const libraries: Library[] = res.map((library) => {
     return new Library(library);
   });

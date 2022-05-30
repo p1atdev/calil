@@ -4,7 +4,7 @@ export interface LibraryRequestOptions {
   /**
    * アプリケーションキー
    */
-  appKey: string;
+  appKey?: string;
 
   /**
    * セッションキー

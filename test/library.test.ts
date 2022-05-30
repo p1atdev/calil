@@ -13,7 +13,7 @@ Deno.test("fetch libraries", async () => {
 
   assertEquals(res.length, 5);
 
-  assertEquals(res[0].libid, "111839");
+  assertEquals(res[0].libraryId, "111839");
 });
 
 Deno.test("fetch 国立国会図書館", async () => {
@@ -26,7 +26,7 @@ Deno.test("fetch 国立国会図書館", async () => {
   // 東京の国立国会図書館は三つに分かれてる
   assertEquals(res.length, 3);
 
-  assertEquals(res[0].systemname, "国立国会図書館");
+  assertEquals(res[0].systemName, "国立国会図書館");
 });
 
 Deno.test("this should throw", async () => {
