@@ -1,5 +1,5 @@
 {
-  "task": {
-    "test": "deno test --allow-net"
+  "tasks": {
+    "test": "deno test --allow-net --allow-env"
   }
 }
