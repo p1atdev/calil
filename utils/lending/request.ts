@@ -68,7 +68,7 @@ export const createLendingRequest = async (
 ): Promise<Lending> => {
   const url = createRequestURL(options);
 
-  console.log("url:", url.toString());
+  // console.log("url:", url.toString());
 
   while (true) {
     const json = await fetch(url.toString()).then((res) => res.json());

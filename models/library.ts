@@ -1,4 +1,11 @@
-import { LibraryCategory, LibraryResponse, Location } from "../types/mod.ts";
+import {
+  LendingRequestOptions,
+  LibraryCategory,
+  LibraryResponse,
+  Location,
+} from "../types/mod.ts";
+import { createLendingRequest } from "../utils/mod.ts";
+import { Lending } from "./mod.ts";
 
 export class Library {
   /**
@@ -103,5 +110,19 @@ export class Library {
     this.isil = data.isil;
     this.faid = data.faid;
     this.url = data.url_pc;
+  }
+
+  /**
+   * 貸出状況を検索
+   */
+  async searchLending(
+    options: Omit<LendingRequestOptions, "systemId">,
+  ): Promise<Lending> {
+    const res = await createLendingRequest({
+      ...options,
+      systemId: this.systemId,
+    });
+
+    return res;
   }
 }

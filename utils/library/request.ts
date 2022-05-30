@@ -67,7 +67,7 @@ export const createLibraryRequest = async (
 ): Promise<Library[]> => {
   const url = createRequestURL(options);
 
-  console.log("url:", url.toString());
+  //   console.log("url:", url.toString());
 
   const json = await fetch(url.toString()).then((res) => res.json());
 
