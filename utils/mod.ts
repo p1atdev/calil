@@ -1,2 +1,2 @@
-export * from "./book/mod.ts";
+export * from "./lending/mod.ts";
 export * from "./library/mod.ts";

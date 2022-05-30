@@ -1,4 +1,4 @@
-export interface BookRequestOptions {
+export interface LendingRequestOptions {
   /**
    * アプリケーションキー
    */
@@ -15,7 +15,7 @@ export interface BookRequestOptions {
   systemId: string | string[];
 }
 
-export const BookRequestOptionsParameter: Map<string, string> = new Map([
+export const LendingRequestOptionsParameter: Map<string, string> = new Map([
   ["appKey", "appkey"],
   ["isbn", "isbn"],
   ["systemId", "systemid"],

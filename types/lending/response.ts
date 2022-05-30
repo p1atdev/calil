@@ -1,4 +1,4 @@
-export interface BookResponse {
+export interface LendingResponse {
   /**
    * セッションID
    */
@@ -14,19 +14,19 @@ export interface BookResponse {
    * 書籍
    * key: ISBN, value: 地域の図書館の情報
    */
-  books: { [key: string]: BookSystemLibraryStatus }[];
+  books: { [key: string]: LendingSystemLibraryStatus }[];
 }
 
 /**
  * key: システムID, value: 図書館の情報
  */
-export type BookSystemLibraryStatus = { [key: string]: BookLendingCondition }[];
+export type LendingSystemLibraryStatus = { [key: string]: LendingCondition }[];
 
-export interface BookLendingCondition {
+export interface LendingCondition {
   /**
-   * 借りられるか
+   * データ取得状況
    */
-  status: BookLendingStatus;
+  status: LendingRequestStatus;
 
   /**
    * 貸出URL
@@ -37,10 +37,12 @@ export interface BookLendingCondition {
    * 借りることができるかどうか
    * keyは図書館名、valueは状態
    */
-  libkey: { [key: string]: string }[];
+  libkey: {
+    [key: string]: LendingStatus;
+  }[];
 }
 
-export enum BookLendingStatus {
+export enum LendingRequestStatus {
   OK = "OK",
   Error = "Error",
   /**
@@ -50,8 +52,14 @@ export enum BookLendingStatus {
   Running = "Running",
 }
 
-// export enum BookLibraryStatus {
-//   AVAILABLE = "貸出可",
-//   LENDING = "貸出中",
-//   INSIDE_ONLY = "館内のみ",
-// }
+export type LendingStatus =
+  | "貸出可"
+  | "蔵書あり"
+  | "館内のみ"
+  | "貸出中"
+  | "予約中"
+  | "準備中"
+  | "休館中"
+  | "蔵書なし"
+  | "行方不明"
+  | "長期延滞";

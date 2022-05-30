@@ -1,10 +1,10 @@
-import { createBookRequest } from "../utils/mod.ts";
+import { createLendingRequest } from "../utils/mod.ts";
 import { assertEquals, assertNotEquals } from "../deps.ts";
 
 const appKey = Deno.env.get("CALIL_APP_KEY")!;
 
 Deno.test("check the status of book lending", async () => {
-  const res = await createBookRequest({
+  const res = await createLendingRequest({
     appKey: appKey,
     isbn: "9784049133189", // キノの旅XXIII the Beautiful World
     systemId: "Tokyo_NDL",

@@ -1,29 +1,29 @@
 import {
-  BookLendingCondition,
-  BookLendingStatus,
-  //   BookLibraryStatus,
-  BookResponse,
-  BookSystemLibraryStatus,
+  LendingCondition,
+  LendingRequestStatus,
+  LendingResponse,
+  LendingStatus,
+  LendingSystemLibraryStatus,
 } from "../types/mod.ts";
 
-export class Book {
+export class Lending {
   /**
    * 書籍
    */
-  books: BookData[];
+  books: LendingData[];
 
-  constructor(data: BookResponse) {
+  constructor(data: LendingResponse) {
     this.books = Object.keys(data.books).map((isbn) => {
       const library = Object.getOwnPropertyDescriptor(data.books, isbn)?.value;
       if (!library) {
         throw new Error(`Library is not found for isbn: ${isbn}`);
       }
-      return new BookData(isbn, library);
+      return new LendingData(isbn, library);
     });
   }
 }
 
-export class BookData {
+export class LendingData {
   /**
    * ISBN
    */
@@ -32,21 +32,21 @@ export class BookData {
   /**
    * 図書館
    */
-  libraries: BookLibraryInformation[];
+  libraries: LendingLibraryInformation[];
 
-  constructor(isbn: string, data: BookSystemLibraryStatus) {
+  constructor(isbn: string, data: LendingSystemLibraryStatus) {
     this.isbn = isbn;
     this.libraries = Object.keys(data).map((key) => {
       const condition = Object.getOwnPropertyDescriptor(data, key)?.value;
       if (!condition) {
         throw new Error(`Condition is not found for system: ${key}`);
       }
-      return new BookLibraryInformation(key, condition);
+      return new LendingLibraryInformation(key, condition);
     });
   }
 }
 
-export class BookLibraryInformation {
+export class LendingLibraryInformation {
   /**
    * システムID
    */
@@ -55,7 +55,7 @@ export class BookLibraryInformation {
   /**
    * ステータス
    */
-  status: BookLendingStatus;
+  status: LendingRequestStatus;
 
   /**
    * 貸出URL
@@ -73,10 +73,10 @@ export class BookLibraryInformation {
     /**
      * 日本語での貸出状況
      */
-    status: string;
+    status: LendingStatus;
   }[];
 
-  constructor(systemId: string, data: BookLendingCondition) {
+  constructor(systemId: string, data: LendingCondition) {
     this.systemId = systemId;
     this.status = data.status;
     this.reserveUrl = data.reserveurl;
