@@ -1,5 +1,5 @@
 import { CalilClient } from "../models/mod.ts";
-import { assertEquals, assertNotEquals } from "../deps.ts";
+import { assertEquals } from "../deps.ts";
 
 const appKey = Deno.env.get("CALIL_APP_KEY")!;
 
