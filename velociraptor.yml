@@ -1,0 +1,9 @@
+allow: 
+  - net
+  - env
+
+envFile:
+ - .env
+
+scripts:
+  test: "deno test"
