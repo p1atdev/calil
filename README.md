@@ -1,22 +1,26 @@
 # Calil Client
 
+![Deno JS](https://img.shields.io/badge/deno%20js-000000?style=for-the-badge&logo=deno&logoColor=white)
 [![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
+[![codecov](https://codecov.io/gh/p1atdev/calil/branch/main/graph/badge.svg?token=S37OD55SBF)](https://codecov.io/gh/p1atdev/calil)
+![Testing](https://github.com/p1atdev/calil/actions/workflows/test.yml/badge.svg)
+![Lint](https://github.com/p1atdev/calil/actions/workflows/lint.yml/badge.svg)
 
 図書館蔵書検索 API Calil(カーリル) の Deno クライアント
 
 ## 使い方
 
 ```ts
-import { CalilClient } from "https://deno.land/x/calil@v0.1.0/mod.ts";
+import { CalilClient } from "https://deno.land/x/calil@v0.1.0/mod.ts"
 
-const client = new CalilClient({ appKey: "your_app_key" });
+const client = new CalilClient({ appKey: "your_app_key" })
 
 const libraries = await client.searchLibrary({
-  prefecture: "沖縄",
-  limit: 3,
-});
+    prefecture: "沖縄",
+    limit: 3,
+})
 
-console.log(libraries);
+console.log(libraries)
 ```
 
 output:
