@@ -12,8 +12,10 @@ jobs:
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-          
+
       - name: Run test
+        env:
+          CALIL_APP_KEY: ${{ secrets.CALIL_APP_KEY }}
         run: deno test -A --coverage=coverage
       - name: Create coverage report
         run: deno coverage ./coverage --lcov > coverage.lcov
