@@ -13,16 +13,16 @@
 ### 図書館の検索
 
 ```ts
-import { CalilClient } from "https://deno.land/x/calil@v0.1.0/mod.ts"
+import { CalilClient } from "https://deno.land/x/calil@v0.1.1/mod.ts";
 
-const client = new CalilClient({ appKey: "your_app_key" })
+const client = new CalilClient({ appKey: "your_app_key" });
 
 const libraries = await client.searchLibrary({
-    prefecture: "沖縄",
-    limit: 2,
-})
+  prefecture: "沖縄",
+  limit: 2,
+});
 
-console.log(libraries)
+console.log(libraries);
 ```
 
 output:
@@ -70,14 +70,14 @@ output:
 
 #### オプション
 
-| 名前        | 説明                 | 型       | 例                       |
-| ----------- | -------------------- | -------- | ------------------------ |
-| appKey?     | アプリケーションキー | string   | `your_key`               |
-| prefecture? | 都道府県             | string   | `東京`                   |
-| city?       | 市区町村             | string   | `千代田区`               |
-| systemId?   | システム ID          | string   | `Tokyo_NDL`              |
-| location?   | 緯度&軽度            | Location | 上の返り値 location 参照 |
-| limit?      | 取得数               | number   | `10`                     |
+| 名前          | 説明         | 型        | 例                 |
+| ----------- | ---------- | -------- | ----------------- |
+| appKey?     | アプリケーションキー | string   | `your_key`        |
+| prefecture? | 都道府県       | string   | `東京`              |
+| city?       | 市区町村       | string   | `千代田区`            |
+| systemId?   | システム ID    | string   | `Tokyo_NDL`       |
+| location?   | 緯度&軽度      | Location | 上の返り値 location 参照 |
+| limit?      | 取得数        | number   | `10`              |
 
 `prefecture`、`systemId`、`location`のうち、少なくともどれかは指定する必要があります
 
@@ -94,16 +94,18 @@ output:
 ### 貸出状況の検索
 
 ```ts
-const appKey = "your_app_key"
+import { CalilClient } from "https://deno.land/x/calil@v0.1.1/mod.ts";
 
-const client = new CalilClient({ appKey })
+const appKey = "your_app_key";
+
+const client = new CalilClient({ appKey });
 
 const lending = await client.searchLending({
-    isbn: "9784048923965", // キノの旅ＸＸ the Beautiful World
-    systemId: "Tokyo_NDL",
-})
+  isbn: "9784048923965", // キノの旅ＸＸ the Beautiful World
+  systemId: "Tokyo_NDL",
+});
 
-console.log(lending)
+console.log(lending);
 ```
 
 output:
@@ -128,21 +130,23 @@ Lending {
 
 #### オプション
 
-| 名前     | 説明                 | 型                                   | 例              |
-| -------- | -------------------- | ------------------------------------ | --------------- |
+| 名前       | 説明         | 型                                    | 例               |
+| -------- | ---------- | ------------------------------------ | --------------- |
 | appKey?  | アプリケーションキー | string                               | `your_app_key`  |
-| isbn     | 書籍 ISBN            | string                               | `9784048923965` |
-| systemId | システム ID          | string, string[], Library, Library[] | `Tokyo_NDL`     |
+| isbn     | 書籍 ISBN    | string                               | `9784048923965` |
+| systemId | システム ID    | string, string[], Library, Library[] | `Tokyo_NDL`     |
 
 systemId は図書館を指定します。図書館検索で帰ってきた `Library` を渡すことも可能です。
 
 ※ ISBN とは
 
-> ISBN（アイエスビーエヌ）は、International Standard Book Number の略称（頭字語）。図書（書籍）および資料の識別用に設けられた国際規格コード（番号システム）の一種。アラビア数字で表される。日本における漢訳名は「国際標準図書番号」。
+> ISBN（アイエスビーエヌ）は、International Standard Book Number
+> の略称（頭字語）。図書（書籍）および資料の識別用に設けられた国際規格コード（番号システム）の一種。アラビア数字で表される。日本における漢訳名は「国際標準図書番号」。
 
 [Wikipedia - ISBN](https://ja.wikipedia.org/wiki/ISBN)
 
-本の一番後ろのページとかに 必ず書いてある 10 桁、または 13 桁の数字です。ハイフンで区切られていることもあります。Amazon の商品ページとかにも載っています。
+本の一番後ろのページとかに 必ず書いてある 10 桁、または 13 桁の数字です。ハイフンで区切られていることもあります。Amazon
+の商品ページとかにも載っています。
 
 ## 仕様書
 
