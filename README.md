@@ -1,6 +1,7 @@
 # Calil Client
 
-![Deno JS](https://img.shields.io/badge/deno%20js-000000?style=for-the-badge&logo=deno&logoColor=white)
+[![deno module](https://shield.deno.dev/x/calil)](https://deno.land/x/calil)
+![deno compatibility](https://shield.deno.dev/deno/^1.22)
 [![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
 [![codecov](https://codecov.io/gh/p1atdev/calil/branch/main/graph/badge.svg?token=S37OD55SBF)](https://codecov.io/gh/p1atdev/calil)
 ![Testing](https://github.com/p1atdev/calil/actions/workflows/test.yml/badge.svg)
@@ -93,12 +94,31 @@ output:
 
 ### 貸出状況の検索
 
+クラス的に
+
 ```ts
-import { CalilClient } from "https://deno.land/x/calil@v0.1.1/mod.ts";
+import { CalilClient } from "https://deno.land/x/calil@v0.1.2/mod.ts";
 
 const appKey = "your_app_key";
 
 const client = new CalilClient({ appKey });
+
+const lending = await client.searchLending({
+  isbn: "9784048923965", // キノの旅ＸＸ the Beautiful World
+  systemId: "Tokyo_NDL",
+});
+
+console.log(lending);
+```
+
+関数的に
+
+```ts
+import { createCalilClient } from "https://deno.land/x/calil@v0.1.2/mod.ts";
+
+const appKey = "your_app_key";
+
+const client = createCalilClient({ appKey });
 
 const lending = await client.searchLending({
   isbn: "9784048923965", // キノの旅ＸＸ the Beautiful World

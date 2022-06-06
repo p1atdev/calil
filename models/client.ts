@@ -38,3 +38,37 @@ export class CalilClient {
 export type CalilClientParams = {
   appKey?: string;
 };
+
+export const createCalilClient = (params: CalilClientParams) => {
+  /**
+   * アプリケーションキー
+   */
+  const appKey = params.appKey ?? Deno.env.get("CALIL_APP_KEY") ?? undefined;
+
+  /**
+   * 図書館を検索
+   */
+  const searchLibrary = async (
+    params: Omit<LibraryRequestOptions, "appKey">,
+  ): Promise<Library[]> => {
+    const res = await createLibraryRequest({ ...params, appKey: appKey });
+
+    return res;
+  };
+
+  /**
+   * 書籍を検索
+   */
+  const searchLending = async (
+    params: Omit<LendingRequestOptions, "appKey">,
+  ): Promise<Lending> => {
+    const res = await createLendingRequest({ ...params, appKey: appKey });
+
+    return res;
+  };
+
+  return {
+    searchLibrary,
+    searchLending,
+  };
+};
