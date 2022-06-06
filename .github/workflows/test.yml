@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout Module
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup deno
         uses: denoland/setup-deno@v1
         with:
@@ -16,9 +16,7 @@ jobs:
       - name: Run test
         env:
           CALIL_APP_KEY: ${{ secrets.CALIL_APP_KEY }}
-        run: deno test -A --coverage=coverage
-      - name: Create coverage report
-        run: deno coverage ./coverage --lcov > coverage.lcov
+        run: deno task test:cov
       - name: Codecov
         uses: codecov/codecov-action@v1.5.2
         with:

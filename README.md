@@ -7,16 +7,33 @@
 ![Testing](https://github.com/p1atdev/calil/actions/workflows/test.yml/badge.svg)
 ![Lint](https://github.com/p1atdev/calil/actions/workflows/lint.yml/badge.svg)
 
-図書館蔵書検索 API Calil(カーリル) の Deno クライアント
+図書館蔵書検索 API [Calil(カーリル)](https://calil.jp/) の Deno クライアント
+
+API 仕様書: https://calil.jp/doc/api_ref.html
 
 ## 使い方
 
 ### 図書館の検索
 
 ```ts
-import { CalilClient } from "https://deno.land/x/calil@v0.1.1/mod.ts";
+import { CalilClient } from "https://deno.land/x/calil@v0.1.2/mod.ts";
 
 const client = new CalilClient({ appKey: "your_app_key" });
+
+const libraries = await client.searchLibrary({
+  prefecture: "沖縄",
+  limit: 2,
+});
+
+console.log(libraries);
+```
+
+関数的に
+
+```ts
+import { createCalilClient } from "https://deno.land/x/calil@v0.1.2/mod.ts";
+
+const client = createCalilClient({ appKey: "your_app_key" });
 
 const libraries = await client.searchLibrary({
   prefecture: "沖縄",
