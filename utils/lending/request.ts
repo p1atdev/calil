@@ -8,10 +8,6 @@ import { Lending, Library } from "../../models/mod.ts";
 const endpoint = "https://api.calil.jp/check";
 
 const createRequestURL = (options: LendingRequestOptions): URL => {
-  if (options.isbn === undefined) {
-    throw new Error("isbn is required");
-  }
-
   if (options.appKey === undefined) {
     throw new Error("appKey is required");
   }

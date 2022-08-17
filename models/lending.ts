@@ -60,7 +60,7 @@ export class LendingLibraryInformation {
   /**
    * 貸出URL
    */
-  reserveUrl: string;
+  reserveUrl?: string;
 
   /**
    * 図書館とそれぞれの状況
@@ -80,15 +80,19 @@ export class LendingLibraryInformation {
     this.systemId = systemId;
     this.status = data.status;
     this.reserveUrl = data.reserveurl;
-    this.libraryStatus = Object.keys(data.libkey).map((key) => {
-      const status = Object.getOwnPropertyDescriptor(data.libkey, key)?.value;
-      if (!status) {
-        throw new Error(`Status is not found for library: ${key}`);
-      }
-      return {
-        name: key,
-        status: status,
-      };
-    });
+    if (data.libkey === undefined) {
+      this.libraryStatus = [];
+    } else {
+      this.libraryStatus = Object.keys(data.libkey).map((key) => {
+        const status = Object.getOwnPropertyDescriptor(data.libkey, key)?.value;
+        if (!status) {
+          throw new Error(`Status is not found for library: ${key}`);
+        }
+        return {
+          name: key,
+          status: status,
+        };
+      });
+    }
   }
 }

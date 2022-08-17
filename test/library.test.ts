@@ -1,8 +1,7 @@
-import { createLibraryRequest } from "../utils/mod.ts";
-import { Prefecture } from "../types/mod.ts";
+import { createLibraryRequest, Prefecture } from "../mod.ts";
 import { assertEquals, assertRejects } from "../deps.ts";
 
-const appKey = Deno.env.get("CALIL_APP_KEY")!;
+const appKey = Deno.env.get("CALIL_APP_KEY") ?? "";
 
 Deno.test("fetch libraries", async () => {
   const res = await createLibraryRequest({
