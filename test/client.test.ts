@@ -1,5 +1,5 @@
 import { CalilClient, createCalilClient } from "../mod.ts";
-import { assertArrayIncludes, assertEquals } from "../deps.ts";
+import { assertArrayIncludes, assertEquals, assertNotEquals } from "../deps.ts";
 
 const appKey = Deno.env.get("CALIL_APP_KEY") ?? "";
 
@@ -42,7 +42,7 @@ Deno.test("calil client: search lending", async () => {
 
 Deno.test("calil: client: empty app key", () => {
   const client = new CalilClient();
-  assertEquals(client.appKey, undefined);
+  assertNotEquals(client.appKey, "");
 });
 
 Deno.test("calil: client: with function", async () => {
